@@ -51,7 +51,11 @@
 </nav>
 </header>
 <body>
-        @yield('corpo')
+
+
+
+@yield('corpo')
+
     </body>
         <footer>
 Developer By Armando soares

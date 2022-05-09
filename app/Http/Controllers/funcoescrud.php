@@ -9,6 +9,8 @@ class funcoescrud extends Controller
   public function listar()
   {
     $livros = tabela_livro::all();
+
+    
     return view('listar',
     [
          'livros'=> $livros
@@ -27,6 +29,8 @@ class funcoescrud extends Controller
          $tabela_livro->autor=$request->autor;
          $tabela_livro->preco=$request->preco;
          $tabela_livro->save();
+
+         
          return redirect('/')->with('msg','cadastrado com susseso');
  
       }  

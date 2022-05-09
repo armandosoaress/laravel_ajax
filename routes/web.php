@@ -19,9 +19,10 @@ use App\http\Controllers\funcoescrud;
 //     return 'Olá, user!';
 // });
 
-Route::get('/', [funcoescrud::class,"listar"]);
+
+Route::get('/', [funcoescrud::class,"listar"])->name('listar');
 Route::get('/cadastrarlivros', [funcoescrud::class,"cadastrarlivros"]);
-Route::post('/enviarlivrosparaobanco', [funcoescrud::class,"enviarlivrosparaobanco"]);
+Route::post('/enviarlivrosparaobanco', [funcoescrud::class,"enviarlivrosparaobanco"])->name('enviarlivrosparabanco');
 Route::delete('/deletar/{id}', [funcoescrud::class,"deletarlivros"]);
 Route::get('/editar/{id}', [funcoescrud::class,"editarlivro"]);
 Route::put('/update/{id}', [funcoescrud::class,"update"]);

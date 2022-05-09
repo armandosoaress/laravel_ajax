@@ -3,6 +3,64 @@
 @section('titulo','inicio')
 
 @section('corpo')
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
+
+
+<script>
+$(function(){
+$('form[name="livroscad"]').submit(function(event){
+  event.preventDefault();
+  $.ajax({
+    url:"{{route('enviarlivrosparabanco') }}",
+    type:"POST",
+    data:$(this).serialize(),
+    dataType:'json',
+    success:function (response){
+      console.log(response);
+    }
+       });     
+      listar();
+    });
+  
+})
+function listar() {
+  $.ajax({url: "/", 
+    success: function(result){
+    $("body").html(result);
+   
+  }
+});
+}
+
+
+</script>
+
+<div id="div1"></div>
+
+<form  name='livroscad'>
+@csrf
+  <div class="form-group">
+    <label for="exampleInputEmail1">Nome do livro</label>
+    <input type="text" name='livro' class="form-control" id="livro"  placeholder="nome do livro">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Autor</label>
+    <input type="text" name='autor' class="form-control" id="" placeholder="Autor">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Preço</label>
+    <input type="text" name='preco' class="form-control" id="" placeholder="Preço">
+  </div>
+
+ <p></p>
+  <button   type="submit" class="btn btn-primary">Cadastrar</button>
+</form>
+
+<div></div>
+
 <table class="table table-striped table-dark">
   <thead>
     <tr>
@@ -18,6 +76,8 @@
   
  
 @foreach($livros as $livro)
+
+
 
 <tr>
       <th scope="row">{{$livro->id}}</th>
